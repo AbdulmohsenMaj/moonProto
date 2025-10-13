@@ -109,7 +109,7 @@ const Section5 = () => {
 			<div className="hidden md:block">
 				<Carousel
 					items={products}
-					itemsPerPage={4}
+					itemsPerPage={5}
 					title="Everlane Favorites"
 					subtitle="Beautifully Functional. Purposefully Designed. Consciously Crafted."
 					showHeader={true}
@@ -119,8 +119,8 @@ const Section5 = () => {
 					gridCols={{
 						sm: 1,
 						md: 3,
-						lg: 4,
-						xl: 4,
+						lg: 5,
+						xl: 5,
 					}}
 				/>
 			</div>
