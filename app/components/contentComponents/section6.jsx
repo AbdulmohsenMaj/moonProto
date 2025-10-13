@@ -21,7 +21,7 @@ const Section6 = () => {
 			author: "AlexB",
 			productName: "The Merino Sweater",
 			href: "#",
-			image: "/images/section6/review2.png",
+			image: "/images/section6/review1.png",
 		},
 		{
 			id: 3,
@@ -31,7 +31,7 @@ const Section6 = () => {
 			author: "AlexB",
 			productName: "The Merino Sweater",
 			href: "#",
-			image: "/images/section6/review3.png",
+			image: "/images/section6/review1.png",
 		},
 		{
 			id: 4,
@@ -41,7 +41,7 @@ const Section6 = () => {
 			author: "AlexB",
 			productName: "The Merino Sweater",
 			href: "#",
-			image: "/images/section6/review4.png",
+			image: "/images/section6/review1.png",
 		},
 	];
 

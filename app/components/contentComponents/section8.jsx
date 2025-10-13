@@ -9,6 +9,11 @@ const Section8 = () => {
 		{ id: 3, src: "/images/section8/third.png", alt: "Look 3" },
 		{ id: 4, src: "/images/section8/fourth.png", alt: "Look 4" },
 		{ id: 5, src: "/images/section8/fifth.png", alt: "Look 5" },
+		{ id: 6, src: "/images/section8/third.png", alt: "Look 3" },
+		{ id: 7, src: "/images/section8/fourth.png", alt: "Look 4" },
+		{ id: 8, src: "/images/section8/fifth.png", alt: "Look 5" },
+		{ id: 9, src: "/images/section8/first.png", alt: "Look 1" },
+		{ id: 10, src: "/images/section8/second.png", alt: "Look 2" },
 	];
 
 	const renderItem = (item) => (
