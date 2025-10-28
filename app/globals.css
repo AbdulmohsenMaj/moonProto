@@ -6,6 +6,15 @@
 	themes: "light dark cupcake";
 }
 
+/* Top-down drawer panel behavior */
+.drawer-top-panel {
+	transform: translateY(-100%);
+	transition: transform 300ms ease;
+}
+.drawer-toggle:checked ~ .drawer-side .drawer-top-panel {
+	transform: translateY(0);
+}
+
 @plugin "tailwindcss-animate";
 
 /* Maison Neue font faces */
@@ -102,6 +111,27 @@ div {
 	/* text color */
 	color: #737373;
 }
+.BottomNav .footer .footer-title {
+	font-family: Maison Neue;
+	font-weight: 600;
+	font-style: Demi;
+	font-size: 10px;
+	leading-trim: NONE;
+	line-height: 16px;
+	letter-spacing: 0.6px;
+	color: #737373;
+}
+.BottomNav .footer a {
+	font-family: Maison Neue;
+	font-weight: 400;
+	font-style: Book;
+	font-size: 14px;
+	leading-trim: NONE;
+	line-height: 16.8px;
+	letter-spacing: 1.4px;
+
+	color: #262626;
+}
 
 .section2 h2 {
 	font-family: "Maison Neue";
@@ -114,6 +144,36 @@ div {
 	text-align: center;
 }
 
+.BlogDetails h1 {
+	font-family: "Maison Neue";
+	font-weight: 400;
+	font-style: "Book";
+	font-size: 40px;
+	leading-trim: NONE;
+	line-height: 48px;
+	letter-spacing: 0px;
+	text-align: left;
+}
+.fit-title {
+	font-family: "Maison Neue";
+	font-weight: 400;
+	font-style: "Book";
+	font-size: 24px;
+	leading-trim: NONE;
+	line-height: 33.24px;
+	letter-spacing: 0px;
+	text-align: center;
+}
+.fitText {
+	font-family: "Maison Neue";
+	font-weight: 400;
+	font-style: "Book";
+	font-size: 14px;
+	leading-trim: NONE;
+	line-height: 16.8px;
+	letter-spacing: 1.4px;
+	color: #737373;
+}
 @theme inline {
 	--radius-sm: calc(var(--radius) - 4px);
 	--radius-md: calc(var(--radius) - 2px);

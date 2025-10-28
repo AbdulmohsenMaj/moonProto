@@ -1,0 +1,10 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Receipt/invoice outline with zigzag top and bottom -->
+  <path d="M12 8L16 4L20 8L24 4L28 8L32 4L36 8L40 4L44 8L48 4L52 8V56L48 60L44 56L40 60L36 56L32 60L28 56L24 60L20 56L16 60L12 56V8Z" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Dollar sign -->
+  <path d="M32 16V48M28 20C28 18.8954 28.8954 18 30 18H34C35.1046 18 36 18.8954 36 20C36 21.1046 35.1046 22 34 22H30C28.8954 22 28 22.8954 28 24C28 25.1046 28.8954 26 30 26H34C35.1046 26 36 26.8954 36 28C36 29.1046 35.1046 30 34 30H30C28.8954 30 28 30.8954 28 32" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Additional receipt lines -->
+  <path d="M20 36H44M20 40H40M20 44H36" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

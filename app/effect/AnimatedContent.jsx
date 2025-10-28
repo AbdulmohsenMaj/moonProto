@@ -20,18 +20,45 @@ const AnimatedContent = ({
 }) => {
 	const ref = useRef(null);
 
+	// Helper function to get animation axis
+	const getAnimationAxis = () => {
+		if (direction === "horizontal") {
+			return "x";
+		} else {
+			return "y";
+		}
+	};
+
+	// Helper function to get animation offset
+	const getAnimationOffset = () => {
+		if (reverse) {
+			return -distance;
+		} else {
+			return distance;
+		}
+	};
+
+	// Helper function to get initial opacity
+	const getInitialOpacity = () => {
+		if (animateOpacity) {
+			return initialOpacity;
+		} else {
+			return 1;
+		}
+	};
+
 	useEffect(() => {
 		const el = ref.current;
 		if (!el) return;
 
-		const axis = direction === "horizontal" ? "x" : "y";
-		const offset = reverse ? -distance : distance;
+		const axis = getAnimationAxis();
+		const offset = getAnimationOffset();
 		const startPct = (1 - threshold) * 100;
 
 		gsap.set(el, {
 			[axis]: offset,
 			scale,
-			opacity: animateOpacity ? initialOpacity : 1,
+			opacity: getInitialOpacity(),
 		});
 
 		gsap.to(el, {

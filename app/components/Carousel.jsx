@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 
 const Carousel = ({
@@ -8,6 +9,9 @@ const Carousel = ({
 	showHeader = true,
 	showDots = true,
 	showArrows = true,
+	showButton = false,
+	buttonText = "Shop Now",
+	buttonLink = "#",
 	arrowPosition = "outside", // "outside" or "inside"
 	gridCols = {
 		sm: 2,
@@ -36,6 +40,32 @@ const Carousel = ({
 		"-translate-x-[800%]",
 		"-translate-x-[900%]",
 	];
+
+	// Helper function to get arrow label
+	const getArrowLabel = (direction) => {
+		if (direction === "left") {
+			return "Previous";
+		} else {
+			return "Next";
+		}
+	};
+
+	// Helper function to get grid column class for a specific breakpoint
+	const getGridColClass = (breakpoint, value, defaultValue) => {
+		if (value === 1) {
+			return `${breakpoint}:grid-cols-1`;
+		} else if (value === 2) {
+			return `${breakpoint}:grid-cols-2`;
+		} else if (value === 3) {
+			return `${breakpoint}:grid-cols-3`;
+		} else if (value === 4) {
+			return `${breakpoint}:grid-cols-4`;
+		} else if (value === 5) {
+			return `${breakpoint}:grid-cols-5`;
+		} else {
+			return `${breakpoint}:grid-cols-${defaultValue}`;
+		}
+	};
 
 	// Group items into pages
 	const pages = [];
@@ -106,7 +136,7 @@ const Carousel = ({
 			onClick={onClick}
 			disabled={disabled}
 			className={`w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed rounded-full ${arrowClassName}`}
-			aria-label={`${direction === "left" ? "Previous" : "Next"} page`}
+			aria-label={`${getArrowLabel(direction)} page`}
 			type="button"
 		>
 			<svg
@@ -182,7 +212,11 @@ const Carousel = ({
 								className="w-full flex-shrink-0"
 							>
 								<div
-									className={`grid grid-cols-1 sm:grid-cols-${gridCols.sm} md:grid-cols-${gridCols.md} lg:grid-cols-${gridCols.lg} xl:grid-cols-${gridCols.xl} gap-6 w-full`}
+									className={`grid gap-4 ${
+									gridCols.sm === 1
+										? "grid-cols-1"
+										: getGridColClass("sm", gridCols.sm, 2)
+								} ${getGridColClass("md", gridCols.md, 3)} ${getGridColClass("lg", gridCols.lg, 4)} ${getGridColClass("xl", gridCols.xl, 5)}`}
 								>
 									{page.map((item, itemIndex) => {
 										const element = itemRenderer(
@@ -236,6 +270,18 @@ const Carousel = ({
 							type="button"
 						/>
 					))}
+				</div>
+			)}
+
+			{/* Shop Now Button */}
+			{showButton && (
+				<div className="flex justify-center mt-8">
+					<a
+						href={buttonLink}
+						className="bg-black text-white px-8 py-3 text-sm font-medium tracking-wide hover:bg-gray-800 transition-colors duration-200 rounded-none"
+					>
+						{buttonText}
+					</a>
 				</div>
 			)}
 		</div>

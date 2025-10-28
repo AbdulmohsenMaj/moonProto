@@ -83,31 +83,37 @@ const Footer = () => {
 					</fieldset>
 				</form>
 			</footer>
-            <footer className="footer footer-horizontal text-base-content border-base-300 w-full grid grid-rows-2 justify-center items-center px-4 sm:px-6 md:px-8 py-6 gap-4">
-                <div className="w-full">
-                    <nav className="footer md:footer-horizontal flex flex-wrap justify-center gap-2 sm:gap-3 md:grid md:grid-rows-1 md:gap-4">
-                        <a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">Privacy Policy</a>
-                        <a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
-                            Terms of Service
-                        </a>
-                        <a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
-                            Do Not Sell or Share My Personal Information
-                        </a>
-                        <a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
-                            CS Supply Chain Transparency
-                        </a>
-                        <a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
-                            Vendor Code of Conduct
-                        </a>
-                        <a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">Sitemap Pages</a>
-                        <a className="link link-hover whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">Sitemap Products</a>
-                    </nav>
-                </div>
+			<footer className="footer footer-horizontal text-base-content border-base-300 w-full grid grid-rows-2 justify-center items-center px-4 sm:px-6 md:px-8 py-6 gap-4">
+				<div className="w-full">
+					<nav className="footer md:footer-horizontal flex flex-wrap justify-center gap-2 sm:gap-3 md:grid md:grid-rows-1 md:gap-4">
+						<a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
+							Privacy Policy
+						</a>
+						<a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
+							Terms of Service
+						</a>
+						<a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
+							Do Not Sell or Share My Personal Information
+						</a>
+						<a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
+							CS Supply Chain Transparency
+						</a>
+						<a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
+							Vendor Code of Conduct
+						</a>
+						<a className="link link-hover md:pr-22 whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
+							Sitemap Pages
+						</a>
+						<a className="link link-hover whitespace-normal break-words text-center text-[12px] sm:text-[13px] md:text-base">
+							Sitemap Products
+						</a>
+					</nav>
+				</div>
 
-                <aside className="justify-self-center">
-                    <p className="mt-3">© 2023 All Rights Reserved</p>
-                </aside>
-            </footer>
+				<aside className="justify-self-center">
+					<p className="mt-3">© 2023 All Rights Reserved</p>
+				</aside>
+			</footer>
 		</div>
 	);
 };
