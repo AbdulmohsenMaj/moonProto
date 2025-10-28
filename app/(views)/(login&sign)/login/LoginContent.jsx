@@ -1,23 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import React, { useState, Suspense } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useUser } from "@/app/context/UserContext";
-
-const ProviderButton = ({ provider, children }) => {
-	const searchParams = useSearchParams();
-	const from = searchParams.get("from") || "/profile";
-	const href = `/api/oauth/${provider}?from=${encodeURIComponent(from)}`;
-	return (
-		<a
-			href={href}
-			className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-black text-white hover:bg-gray-800 transition-colors w-full"
-		>
-			{children}
-		</a>
-	);
-};
+import ProviderButtonClient from "./ProviderButtonClient";
 
 export default function LoginContent() {
 	const [formData, setFormData] = useState({
@@ -27,7 +14,6 @@ export default function LoginContent() {
 	const [errors, setErrors] = useState({});
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
-	const searchParams = useSearchParams();
 	const { refetch } = useUser();
 
 	const handleChange = (e) => {
@@ -78,7 +64,7 @@ export default function LoginContent() {
 
 			if (response.ok) {
 				// Wait longer for cookie to be properly set, then refetch user data
-				const from = searchParams.get("from") || "/profile";
+				const from = new URLSearchParams(window.location.search).get("from") || "/profile";
 				setTimeout(async () => {
 					await refetch();
 					router.push(from);
@@ -190,12 +176,16 @@ export default function LoginContent() {
 
 				{/* OAuth Providers */}
 				<div className="space-y-3">
-					<ProviderButton provider="google">
-						Continue with Google
-					</ProviderButton>
-					<ProviderButton provider="github">
-						Continue with GitHub
-					</ProviderButton>
+					<Suspense fallback={<div>Loading...</div>}>
+						<ProviderButtonClient provider="google">
+							Continue with Google
+						</ProviderButtonClient>
+					</Suspense>
+					<Suspense fallback={<div>Loading...</div>}>
+						<ProviderButtonClient provider="github">
+							Continue with GitHub
+						</ProviderButtonClient>
+					</Suspense>
 				</div>
 
 				<div className="text-center">
