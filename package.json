@@ -1,34 +1,40 @@
 {
-  "name": "landing",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "gsap": "^3.13.0",
-    "lucide-react": "^0.545.0",
-    "mathjs": "^15.0.0",
-    "motion": "^12.23.24",
-    "next": "15.5.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss-animate": "^1.0.7"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "daisyui": "^5.1.27",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.4",
-    "tailwindcss": "^4"
-  },
-  "browserslist": "> 1%"
+	"name": "landing",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build --turbopack",
+		"start": "next start",
+		"lint": "eslint"
+	},
+	"dependencies": {
+		"@tailwindcss/line-clamp": "^0.4.4",
+		"bcryptjs": "^3.0.2",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"dotenv": "^17.2.3",
+		"gsap": "^3.13.0",
+		"jose": "^6.1.0",
+		"lucide-react": "^0.545.0",
+		"mathjs": "^15.0.0",
+		"mongoose": "^8.19.2",
+		"motion": "^12.23.24",
+		"next": "15.5.4",
+		"next-auth": "^4.24.12",
+		"nodemailer": "^7.0.10",
+		"react": "19.1.0",
+		"react-dom": "19.1.0",
+		"tailwind-merge": "^3.3.1",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@eslint/eslintrc": "^3",
+		"@tailwindcss/postcss": "^4",
+		"daisyui": "^5.1.27",
+		"eslint": "^9",
+		"eslint-config-next": "15.5.4",
+		"tailwindcss": "^4"
+	},
+	"browserslist": "> 1%"
 }

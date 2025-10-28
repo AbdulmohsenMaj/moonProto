@@ -1,5 +1,6 @@
 import "./globals.css";
 import { CartProvider } from "./context/CartContext";
+import { UserProvider } from "./context/UserContext";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,9 +11,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body className="antialiased">
-        <CartProvider>
-          {children}
-        </CartProvider>
+        <UserProvider>
+          <CartProvider>
+            {children}
+          </CartProvider>
+        </UserProvider>
       </body>
     </html>
   );
