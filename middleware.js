@@ -23,6 +23,35 @@ export async function middleware(request) {
 	if (isPublic) return NextResponse.next();
 
 	const token = request.cookies.get("auth_token")?.value;
+
+	// Special handling for /admin path
+	if (pathname.startsWith("/admin")) {
+		if (!token) {
+			// If no token, redirect to 404 for admin path
+			const url = request.nextUrl.clone();
+			url.pathname = "/not-found";
+			return NextResponse.redirect(url);
+		}
+
+		try {
+			const { payload } = await jwtVerify(token, getSecretKey(), {
+				algorithms: ["HS256"],
+			});
+			if (payload.role !== "admin") {
+				const url = request.nextUrl.clone();
+				url.pathname = "/not-found";
+				return NextResponse.redirect(url);
+			}
+			return NextResponse.next(); // Admin user, proceed
+		} catch (e) {
+			// Token invalid or expired for admin path, redirect to 404
+			const url = request.nextUrl.clone();
+			url.pathname = "/not-found";
+			return NextResponse.redirect(url);
+		}
+	}
+
+	// General authentication for other protected paths
 	if (!token) {
 		const url = request.nextUrl.clone();
 		url.pathname = "/login";
@@ -42,5 +71,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-	matcher: ["/profile/:path*"],
+	matcher: ["/profile/:path*", "/admin/:path*"],
 };

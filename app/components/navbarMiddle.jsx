@@ -31,6 +31,14 @@ const NavbarMiddle = () => {
 			active: pathname === "/everworld",
 		},
 	];
+
+	if (user && user.role === "admin") {
+		navItems.push({
+			label: "Admin",
+			href: "/admin",
+			active: pathname === "/admin",
+		});
+	}
 	return (
 		<div>
 			<div className="navbar bg-base-100 shadow-sm border-b border-[#DDDBDC] min-h-[56px] px-2 sm:px-4">
@@ -230,7 +238,7 @@ const NavbarMiddle = () => {
 												height="24"
 												className="w-6 h-6 rounded-full object-cover"
 											/>
-											{user.role === 'admin' && (
+											{user.role === "admin" && (
 												<div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border border-white"></div>
 											)}
 										</div>
@@ -254,7 +262,7 @@ const NavbarMiddle = () => {
 										<li className="menu-title">
 											<span className="text-xs text-gray-500">
 												{user.name}
-												{user.role === 'admin' && (
+												{user.role === "admin" && (
 													<span className="ml-2 px-1 py-0.5 bg-red-100 text-red-800 text-xs rounded">
 														Admin
 													</span>
@@ -265,7 +273,9 @@ const NavbarMiddle = () => {
 											<Link href="/profile">Profile</Link>
 										</li>
 										<li>
-											<button onClick={logout}>Logout</button>
+											<button onClick={logout}>
+												Logout
+											</button>
 										</li>
 									</>
 								) : (

@@ -46,6 +46,7 @@ export async function POST(request) {
 			name: user.name,
 			email: user.email,
 			provider: "email",
+			role: user.role, // Add user's role to the JWT payload
 		});
 
 		// Create response with cookie

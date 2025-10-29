@@ -54,7 +54,7 @@ export async function GET(req, { params }) {
 	const url = new URL(req.url);
 	const code = url.searchParams.get("code");
 	const state = url.searchParams.get("state");
-	const cookieStore = cookies();
+	const cookieStore = await cookies();
 	const expectedState = cookieStore.get(`oauth_state_${provider}`)?.value;
 	const returnTo = cookieStore.get("oauth_return_to")?.value || "/account";
 

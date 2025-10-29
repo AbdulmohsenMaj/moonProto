@@ -35,7 +35,7 @@ UserSchema.pre('save', function(next) {
       return next(new Error('Email users must have a password'));
     }
     // Email users don't need OAuth fields
-    this.provider = undefined;
+    this.provider = 'none';
     this.providerId = undefined;
   }
   next();
