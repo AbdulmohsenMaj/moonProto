@@ -1,28 +1,59 @@
 "use client";
 import React from "react";
 
-import Hero from "../../components/mainPageComponents/hero";
-import Section2s from "../../components/mainPageComponents/section2";
-import Section3 from "../../components/mainPageComponents/section3";
-import Section4 from "../../components/mainPageComponents/section4";
-import Section5 from "../../components/mainPageComponents/section5";
-import Section6 from "../../components/mainPageComponents/section6";
-import Section7 from "../../components/mainPageComponents/section7";
-import Section8 from "../../components/mainPageComponents/section8";
-import Section9 from "../../components/mainPageComponents/section9";
+import CoffeeHero from "../../components/CoffeeHero";
+import CategoryCards from "../../components/CategoryCards";
+import PromoSection from "../../components/PromoSection";
+import DBProductGrid from "../../components/DBProductGrid";
+import NewsletterSignup from "../../components/NewsletterSignup";
 
 export default function Home() {
 	return (
 		<>
-			<Hero />
-			<Section2s />
-			<Section3 />
-			<Section4 />
-			<Section5 />
-			<Section6 />
-			<Section7 />
-			<Section8 />
-			<Section9 />
+			<div>
+				<div>
+					<CoffeeHero
+						overlayWidth="520px"
+						overlayMarginLeft="200px"
+					/>
+				</div>
+				<div>
+					<CategoryCards />
+				</div>
+				<div>
+					<PromoSection />
+				</div>
+				<div className="mx-12 sm:mx-2 lg:mx-12 my-12">
+					<DBProductGrid title="Best Sellers" maxProducts={8} />
+				</div>
+				<div className="pb-0">
+					<PromoSection
+						showButton={false}
+						backgroundImage="/landing/images/coffee.jpg"
+						containerClassName="bg-white pb-0"
+						title="MADE IN VIET NAM"
+						titleSpan="SINCE 1450"
+						description="Lorem ipsum dolor sit amet consectetur adipiscing elit mattis sit phasellus mollis sit aliquam sit nullam neque ultrices."
+					/>
+				</div>
+				<div className="pb-0">
+					<PromoSection
+						showButton={false}
+						backgroundImage="/landing/images/coffee.jpg"
+						containerClassName="bg-gray-50 pb-0"
+						title="OUR HISTORY"
+						titleSpan=""
+						description="Lorem ipsum dolor sit amet consectetur adipiscing elit mattis sit phasellus mollis sit aliquam sit."
+						reverse={true}
+					/>
+				</div>
+				<div className="my-12 mx-12 sm:mx-2 lg:mx-12">
+					<DBProductGrid title="New Arrivals" maxProducts={4} />
+				</div>
+				<div>
+					<NewsletterSignup />
+				</div>
+			</div>
 		</>
 	);
 }

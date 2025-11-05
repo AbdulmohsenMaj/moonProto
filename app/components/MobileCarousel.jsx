@@ -1,17 +1,58 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const MobileCarousel = ({
-	items = [],
-	title = "",
-	subtitle = "",
-	showHeader = true,
-	showDots = true,
-	className = "",
-	containerClassName = "",
-	itemClassName = "",
+    items = [],
+    title = "",
+    subtitle = "",
+    showHeader = true,
+    showDots = true,
+    className = "",
+    containerClassName = "",
+    itemClassName = "",
+    // Optional custom renderer to allow href/link-wrapped items
+    renderItem = null,
 }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const totalItems = items.length;
+
+	// Touch swipe refs
+	const touchStartXRef = useRef(0);
+	const touchStartYRef = useRef(0);
+	const isDraggingRef = useRef(false);
+
+	const handleTouchStart = (e) => {
+		if (e.touches && e.touches.length > 0) {
+			const touch = e.touches[0];
+			touchStartXRef.current = touch.clientX;
+			touchStartYRef.current = touch.clientY;
+			isDraggingRef.current = true;
+		}
+	};
+
+	const handleTouchMove = (e) => {
+		if (!isDraggingRef.current || !(e.touches && e.touches.length > 0)) return;
+		const touch = e.touches[0];
+		const dx = touch.clientX - touchStartXRef.current;
+		const dy = touch.clientY - touchStartYRef.current;
+		// If horizontal intent dominates, prevent vertical scroll jitter
+		if (Math.abs(dx) > Math.abs(dy)) {
+			e.preventDefault();
+		}
+	};
+
+	const handleTouchEnd = (e) => {
+		if (!isDraggingRef.current) return;
+		isDraggingRef.current = false;
+		const changedTouch = (e.changedTouches && e.changedTouches[0]) || null;
+		if (!changedTouch) return;
+		const dx = changedTouch.clientX - touchStartXRef.current;
+		const threshold = 50; // px
+		if (dx > threshold) {
+			prevSlide();
+		} else if (dx < -threshold) {
+			nextSlide();
+		}
+	};
 
 	const goToSlide = (index) => {
 		setCurrentIndex(index);
@@ -25,37 +66,39 @@ const MobileCarousel = ({
 		setCurrentIndex((prev) => (prev - 1 + totalItems) % totalItems);
 	};
 
-	// Default item renderer for mobile
-	const renderItem = (item, index) => (
-		<div key={index} className={`w-full ${itemClassName}`}>
-			<div className="aspect-[4/5] bg-[#262626] overflow-hidden mb-4 relative">
-				<img
-					src={item.image || item.src}
-					alt={item.name || item.title || `Item ${index + 1}`}
-					className="w-full h-full object-cover"
-				/>
-			</div>
-			<div className="space-y-1 px-4">
-				<div className="flex justify-between items-start">
-					<div className="flex-1 pr-2 text-left">
-						<h3 className="font-['Maison_Neue'] text-[12px] leading-[16px] tracking-[0.2px] font-normal text-gray-900 text-left">
-							{item.name || item.title}
-						</h3>
-						{item.description && (
-							<p className="font-['Maison_Neue'] text-[12px] leading-[16px] tracking-[0.2px] font-normal text-gray-500 mt-1 text-left">
-								{item.description}
-							</p>
-						)}
-					</div>
-					{item.price && (
-						<p className="font-['Maison_Neue'] text-[12px] leading-[16px] tracking-[0.2px] font-normal text-gray-900 flex-shrink-0 text-right">
-							{item.price}
-						</p>
-					)}
-				</div>
-			</div>
-		</div>
-	);
+    // Default item renderer for mobile
+    const defaultRenderItem = (item, index) => (
+        <div key={index} className={`w-full ${itemClassName}`}>
+            <div className="aspect-[4/5] bg-[#262626] overflow-hidden mb-4 relative">
+                <img
+                    src={item.image || item.src}
+                    alt={item.name || item.title || `Item ${index + 1}`}
+                    className="w-full h-full object-cover"
+                />
+            </div>
+            <div className="space-y-1 px-4">
+                <div className="flex justify-between items-start">
+                    <div className="flex-1 pr-2 text-left">
+                        <h3 className="font-['Maison_Neue'] text-[12px] leading-[16px] tracking-[0.2px] font-normal text-gray-900 text-left">
+                            {item.name || item.title}
+                        </h3>
+                        {item.description && (
+                            <p className="font-['Maison_Neue'] text-[12px] leading-[16px] tracking-[0.2px] font-normal text-gray-500 mt-1 text-left">
+                                {item.description}
+                            </p>
+                        )}
+                    </div>
+                    {item.price && (
+                        <p className="font-['Maison_Neue'] text-[12px] leading-[16px] tracking-[0.2px] font-normal text-gray-900 flex-shrink-0 text-right">
+                            {item.price}
+                        </p>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+
+    const itemRenderer = renderItem || defaultRenderItem;
 
 	// Arrow component
 	const ArrowButton = ({ direction, onClick, disabled }) => (
@@ -107,18 +150,23 @@ const MobileCarousel = ({
 			{/* Mobile Carousel */}
 			<div className="relative">
 				{/* Carousel Container */}
-				<div className="overflow-hidden">
+				<div
+					className="overflow-hidden"
+					onTouchStart={handleTouchStart}
+					onTouchMove={handleTouchMove}
+					onTouchEnd={handleTouchEnd}
+				>
 					<div
 						className="flex transition-transform duration-300 ease-in-out"
 						style={{
 							transform: `translateX(-${currentIndex * 100}%)`,
 						}}
 					>
-						{items.map((item, index) => (
-							<div key={index} className="w-full flex-shrink-0">
-								{renderItem(item, index)}
-							</div>
-						))}
+                        {items.map((item, index) => (
+                            <div key={index} className="w-full flex-shrink-0">
+                                {itemRenderer(item, index)}
+                            </div>
+                        ))}
 					</div>
 				</div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import CartItem from "./CartItem";
 import RecommendationCarousel from "./RecommendationCarousel";
@@ -12,31 +13,28 @@ const CartDrawer = () => {
 		<div className="drawer drawer-end">
 			<input id="cart-drawer" type="checkbox" className="drawer-toggle" />
 
-			{/* Cart Icon */}
-			<motion.label
-				htmlFor="cart-drawer"
-				whileHover={{ scale: 1.1 }}
-				whileTap={{ scale: 0.95 }}
-				transition={{
-					type: "spring",
-					stiffness: 600,
-					damping: 25,
-				}}
-				className="btn btn-ghost btn-circle drawer-button cursor-pointer relative"
-			>
-				<img
-					src="/cart.svg"
-					alt="Cart"
-					width="20"
-					height="20"
-					className="w-5 h-5"
-				/>
-				{totalItems > 0 && (
-					<span className="absolute -top-1 -right-1 bg-gray-100 text-black text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
-						{totalItems > 99 ? "99+" : totalItems}
-					</span>
-				)}
-			</motion.label>
+            {/* Cart Icon now navigates to /cart */}
+            <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 600, damping: 25 }}
+                className="relative"
+            >
+                <Link href="/cart" className="btn btn-ghost btn-circle cursor-pointer relative">
+                    <img
+                        src="/landing/icons/cart.svg"
+                        alt="Cart"
+                        width="20"
+                        height="20"
+                        className="w-5 h-5"
+                    />
+                    {totalItems > 0 && (
+                        <span className="absolute -top-1 -right-1 bg-gray-100 text-black text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+                            {totalItems > 99 ? "99+" : totalItems}
+                        </span>
+                    )}
+                </Link>
+            </motion.div>
 
 			{/* Cart Drawer Slideout */}
 			<div className="drawer-side">

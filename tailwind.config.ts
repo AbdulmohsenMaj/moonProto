@@ -8,7 +8,10 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				"maison-neue": ["Maison Neue", "sans-serif"],
+				inter: ["Inter", "sans-serif"],
+				garamond: ["EB Garamond", "Garamond", "serif"],
+				// Map old class to Inter so existing usages keep working
+				"maison-neue": ["Inter", "sans-serif"],
 			},
 		},
 	},

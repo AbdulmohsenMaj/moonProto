@@ -9,7 +9,7 @@ import { useMemo } from 'react';
  * @returns {Array} Filtered products
  */
 export const useProductFilter = (products, filters) => {
-  const { selectedCategories, selectedColors, selectedSizes } = filters;
+  const { selectedCategories, selectedColors, selectedSizes, selectedPriceRanges } = filters;
   const filteredProducts = useMemo(() => {
     let filtered = products;
 
@@ -38,8 +38,18 @@ export const useProductFilter = (products, filters) => {
       );
     }
 
+    // Filter by price range
+    if (selectedPriceRanges.length > 0) {
+      filtered = filtered.filter(product => {
+        const productPrice = product.salePrice || product.price;
+        return selectedPriceRanges.some(range => 
+          productPrice >= range.min && (range.max === Infinity ? true : productPrice <= range.max)
+        );
+      });
+    }
+
     return filtered;
-  }, [products, selectedCategories, selectedColors, selectedSizes]);
+  }, [products, selectedCategories, selectedColors, selectedSizes, selectedPriceRanges]);
 
   return filteredProducts;
 };

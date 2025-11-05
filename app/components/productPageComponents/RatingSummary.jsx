@@ -14,9 +14,9 @@ const RatingSummary = ({
 				<div className="text-lg font-medium mb-2">
 					Overall Rating
 				</div>
-				<div className="flex justify-center mb-2">
-					{renderStars(averageRating, "rating-lg")}
-				</div>
+                <div className="flex justify-center mb-2">
+                    {renderStars(averageRating, "rating-lg", true, "summary")}
+                </div>
 				<div className="text-sm text-gray-600">
 					Based on {reviews.length} reviews
 				</div>

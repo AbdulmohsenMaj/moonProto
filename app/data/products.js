@@ -18,7 +18,7 @@ export const productCategories = {
 	BASICS: "Basics",
 };
 
-export const products = [
+const originalProducts = [
 	// Products with actual images from everworld_images (1-6.png)
 	{
 		id: 1,
@@ -30,7 +30,7 @@ export const products = [
 		descriptionTitle: "Timeless Luxury in Premium Cashmere",
 		detailedDescription:
 			"Experience unparalleled luxury with our premium cashmere sweater crafted from the finest Grade-A cashmere fibers. This timeless piece features a classic crew neck design with ribbed cuffs and hem for a polished finish. The relaxed fit provides comfortable layering while maintaining an elegant silhouette. Perfect for both casual weekends and sophisticated office wear, this versatile sweater pairs beautifully with tailored trousers or flowing skirts. The pristine white color adds brightness to any wardrobe and complements every skin tone. Each sweater is carefully constructed with reinforced seams and expert finishing techniques to ensure lasting quality and shape retention.",
-		image: "/landing/images/everworld_images/1.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.KNITWEAR,
 		genre: "Winter Whites",
 		gender: ["female"],
@@ -96,7 +96,7 @@ export const products = [
 		descriptionTitle: "Contemporary Comfort Meets Effortless Style",
 		detailedDescription:
 			"Embrace effortless sophistication with these contemporary wide-leg corduroy pants that redefine modern comfort. Crafted from premium organic cotton corduroy, these pants feature a flattering high-waisted design that elongates the silhouette while providing all-day comfort. The wide-leg cut creates a flowing, elegant movement that's perfect for both professional settings and weekend adventures. The classic white colorway offers endless styling possibilities, pairing beautifully with everything from fitted sweaters to flowing blouses. Thoughtful details include functional front and back pockets, a comfortable elastic waistband with drawstring, and a full-length inseam that works with both flats and heels.",
-		image: "/landing/images/everworld_images/2.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.BOTTOMS,
 		genre: "Winter Whites",
 		gender: ["female"],
@@ -162,7 +162,7 @@ export const products = [
 		descriptionTitle: "The Perfect Foundation for Every Wardrobe",
 		detailedDescription:
 			"Discover the perfect foundation for any wardrobe with this impeccably crafted Oxford shirt that embodies timeless elegance and modern functionality. Made from premium 100% cotton Oxford cloth, this shirt features a crisp, structured feel that maintains its shape throughout the day. The tailored fit provides a polished silhouette without restricting movement, making it ideal for both business meetings and casual outings. Classic details include a button-down collar, single chest pocket with button closure, and barrel cuffs with adjustable buttons. The pristine white colorway serves as the ultimate versatile piece, effortlessly transitioning from office wear with a blazer to weekend casual with rolled sleeves.",
-		image: "/landing/images/everworld_images/3.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.DRESS_SHIRTS,
 		genre: "Winter Whites",
 		gender: ["male"],
@@ -226,7 +226,7 @@ export const products = [
 		descriptionTitle: "Premium Winter Protection with Modern Style",
 		detailedDescription:
 			"Stay warm and stylish throughout the coldest months with this premium puffer jacket that combines cutting-edge insulation technology with contemporary design. Filled with responsibly sourced down insulation, this jacket provides exceptional warmth without bulk, allowing for easy layering and comfortable movement. The water-resistant outer shell protects against light rain and snow, while the breathable fabric prevents overheating during active wear. Thoughtful design features include a full-zip front with storm flap, adjustable hood with drawstring, zippered side pockets for secure storage, and ribbed cuffs to seal in warmth. The clean white colorway offers a fresh, modern aesthetic that pairs beautifully with any winter wardrobe.",
-		image: "/landing/images/everworld_images/4.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.OUTERWEAR,
 		genre: "Winter Whites",
 		gender: ["female"],
@@ -291,7 +291,7 @@ export const products = [
 		descriptionTitle: "Ultimate Comfort in Contemporary Casual Luxury",
 		detailedDescription:
 			"Embrace ultimate comfort and contemporary style with this oversized hoodie that redefines casual luxury. Crafted from a premium cotton-polyester blend, this hoodie offers the perfect balance of softness, durability, and easy care. The oversized fit provides a relaxed, modern silhouette that's perfect for lounging, running errands, or layering over your favorite outfits. Features include a spacious kangaroo pocket for hands and essentials, an adjustable drawstring hood for customizable coverage, and ribbed cuffs and hem for a polished finish. The clean white colorway serves as a versatile canvas that pairs effortlessly with any bottom, from joggers to jeans to skirts, making it an essential piece for any casual wardrobe.",
-		image: "/landing/images/everworld_images/5.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.BASICS,
 		genre: "Winter Whites",
 		gender: ["female"],
@@ -356,7 +356,7 @@ export const products = [
 		descriptionTitle: "Timeless Elegance in Premium Wool",
 		detailedDescription:
 			"Embrace timeless elegance with this beautifully crafted wool skirt that embodies sophisticated femininity and versatile styling. Made from a premium wool blend, this skirt offers the perfect balance of structure and comfort, maintaining its shape throughout the day while providing gentle movement with each step. The flattering A-line silhouette creates a classic, universally flattering fit that skims the hips and flows gracefully to a midi length that hits at the most flattering point of the calf. The winter white colorway brings fresh sophistication to your wardrobe, offering endless styling possibilities from professional meetings with a crisp blouse to weekend brunches with a cozy sweater. Thoughtful construction details include a concealed side zipper, comfortable waistband, and expert tailoring that ensures a polished appearance from every angle.",
-		image: "/landing/images/everworld_images/6.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.BOTTOMS,
 		genre: "Winter Whites",
 		gender: ["female"],
@@ -421,7 +421,7 @@ export const products = [
 		salePriceDisplay: "$42",
 		description:
 			"Comfortable waffle-knit long-sleeve crew in bone. Perfect for layering with a relaxed, lived-in feel.",
-		image: "/landing/images/section5/waffle.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.BASICS,
 		genre: "Everlane Favorites",
 		gender: ["male"],
@@ -485,7 +485,7 @@ export const products = [
 		descriptionTitle: "Contemporary Military-Inspired Design",
 		detailedDescription:
 			"Elevate your outerwear collection with this contemporary bomber jacket that perfectly balances classic military-inspired design with modern sophistication. Crafted from premium recycled polyester, this jacket offers durability and comfort while supporting sustainable fashion practices. The structured silhouette creates a flattering fit that works beautifully over everything from casual tees to elegant blouses. The rich toasted coconut colorway adds warmth and versatility to your wardrobe, complementing both neutral and bold color palettes. Thoughtful design details include ribbed cuffs and hem for a secure fit, full-zip front closure, and side pockets for practical storage. The bomber's cropped length hits perfectly at the waist, creating a flattering proportion that pairs effortlessly with high-waisted bottoms. This modern interpretation of the classic bomber style transitions seamlessly from day to night, making it an essential piece for the contemporary wardrobe.",
-		image: "/landing/images/section5/bomber.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.OUTERWEAR,
 		genre: "Everlane Favorites",
 		gender: ["female"],
@@ -546,7 +546,7 @@ export const products = [
 		priceDisplay: "$68",
 		description:
 			"Slim-fit jeans in dark indigo with 4-way stretch. Made from organic cotton for comfort and sustainability.",
-		image: "/landing/images/section5/slim.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.BOTTOMS,
 		genre: "Everlane Favorites",
 		gender: ["female"],
@@ -621,7 +621,7 @@ export const products = [
 		salePriceDisplay: "$21",
 		description:
 			"Essential crew neck tee in vintage black. Made from 100% organic cotton for everyday comfort.",
-		image: "/landing/images/section5/organic.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.BASICS,
 		genre: "Everlane Favorites",
 		gender: ["male"],
@@ -682,7 +682,7 @@ export const products = [
 		priceDisplay: "$45",
 		description:
 			"Heavyweight cotton tee in heathered brown. Built to last with a substantial feel and classic fit.",
-		image: "/landing/images/section5/theHeavy.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.BASICS,
 		genre: "Everlane Favorites",
 		gender: ["male"],
@@ -745,7 +745,7 @@ export const products = [
 		priceDisplay: "$89",
 		description:
 			"Durable canvas weekender bag perfect for short trips. Features leather handles and multiple compartments.",
-		image: "/landing/images/everworld_images/1.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.BACKPACKS,
 		genre: "Travel",
 		gender: ["male", "female"],
@@ -786,7 +786,7 @@ export const products = [
 		priceDisplay: "$199",
 		description:
 			"Premium leather duffle bag for weekend getaways. Features brass hardware and spacious interior.",
-		image: "/landing/images/everworld_images/2.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.BACKPACKS,
 		genre: "Travel",
 		gender: ["male", "female"],
@@ -827,7 +827,7 @@ export const products = [
 		priceDisplay: "$189",
 		description:
 			"Elegant silk midi dress perfect for special occasions. Features flowing silhouette and adjustable straps.",
-		image: "/landing/images/everworld_images/3.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.DRESSES,
 		genre: "Elegant",
 		gender: ["female"],
@@ -870,7 +870,7 @@ export const products = [
 		priceDisplay: "$79",
 		description:
 			"Comfortable cotton wrap dress for everyday wear. Features adjustable tie waist and three-quarter sleeves.",
-		image: "/landing/images/everworld_images/4.png",
+		image: "/landing/images/coffee.jpg",
 		category: productCategories.DRESSES,
 		genre: "Casual",
 		gender: ["female"],
@@ -906,6 +906,14 @@ export const products = [
 			},
 		],
 	},
+];
+
+// Create products array with 4 copies of the original products
+export const products = [
+	...originalProducts,
+	...originalProducts.map(product => ({ ...product, id: product.id + 1000 })),
+	...originalProducts.map(product => ({ ...product, id: product.id + 2000 })),
+	...originalProducts.map(product => ({ ...product, id: product.id + 3000 }))
 ];
 
 // Helper functions

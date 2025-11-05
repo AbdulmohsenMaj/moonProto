@@ -1,9 +1,6 @@
 import "../../globals.css";
 import NavbarMiddle from "../../components/navbarMiddle";
-import NavbarTop from "../../components/navbarTop";
-import NavbarBottom from "../../components/navbarBottom";
 import Footer from "../../components/footerComponent/footer";
-import BottomArrow from "../../components/navbarBottomArrow";
 
 export const metadata = {
 	title: "Create Next App",
@@ -14,10 +11,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en" data-theme="light">
 			<body className="antialiased">
-				<NavbarTop />
 				<NavbarMiddle />
-				<NavbarBottom />
-				<BottomArrow />
 				{children}
 				<Footer />
 			</body>

@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import {
 	getReviewsByProductId,
@@ -7,7 +8,7 @@ import {
 import RatingSummary from "./RatingSummary";
 import ReviewsList from "./ReviewsList";
 
-const ReviewsComponent = ({ productId }) => {
+const ReviewsComponent = ({ productId, listOnly = false }) => {
 	const reviews = getReviewsByProductId(productId);
 	const averageRating = getAverageRating(productId);
 	const ratingDistribution = getRatingDistribution(productId);
@@ -24,38 +25,39 @@ const ReviewsComponent = ({ productId }) => {
 		"most-helpful": "Most Helpful"
 	};
 
-	// Helper function to render DaisyUI rating stars with half-star support
-	const renderStars = (rating, size = "rating-sm", readOnly = true) => {
-		const uniqueId = `rating-${Math.random().toString(36).substr(2, 9)}`;
+    // Helper function to render DaisyUI rating stars with half-star support
+    // groupId ensures deterministic radio name per rating block to avoid hydration mismatches
+    const renderStars = (rating, size = "rating-sm", readOnly = true, groupId = null) => {
+        const uniqueId = `rating-${groupId ?? `product-${productId}`}`;
 
 		if (readOnly) {
 			// Read-only rating display with half stars using DaisyUI
 			return (
 				<div className={`rating rating-half ${size}`}>
-					<input
-						type="radio"
-						name={`${uniqueId}-rating`}
-						className="rating-hidden"
-					/>
+                    <input
+                        type="radio"
+                        name={`${uniqueId}`}
+                        className="rating-hidden"
+                    />
 					{Array.from({ length: 10 }, (_, index) => {
 						const starValue = (index + 1) / 2;
 						const isHalf = index % 2 === 0;
 						const isFilled = starValue <= rating;
 
 						return (
-							<input
-								key={index}
-								type="radio"
-								name={`${uniqueId}-rating`}
-								className={`mask ${
-									isHalf
-										? "mask-star-2 mask-half-1"
-										: "mask-star-2 mask-half-2"
-								} ${isFilled ? "bg-black" : "bg-gray-300"}`}
-								aria-label={`${starValue} star`}
-								checked={isFilled}
-								readOnly
-							/>
+                            <input
+                                key={index}
+                                type="radio"
+                                name={`${uniqueId}`}
+                                className={`mask ${
+                                    isHalf
+                                        ? "mask-star-2 mask-half-1"
+                                        : "mask-star-2 mask-half-2"
+                                } ${isFilled ? "bg-black" : "bg-gray-300"}`}
+                                aria-label={`${starValue} star`}
+                                checked={isFilled}
+                                readOnly
+                            />
 						);
 					})}
 				</div>
@@ -64,28 +66,28 @@ const ReviewsComponent = ({ productId }) => {
 			// Interactive rating with half stars
 			return (
 				<div className={`rating rating-half ${size}`}>
-					<input
-						type="radio"
-						name={`${uniqueId}-rating`}
-						className="rating-hidden"
-					/>
+                    <input
+                        type="radio"
+                        name={`${uniqueId}`}
+                        className="rating-hidden"
+                    />
 					{Array.from({ length: 10 }, (_, index) => {
 						const starValue = (index + 1) / 2;
 						const isHalf = index % 2 === 0;
 
 						return (
-							<input
-								key={index}
-								type="radio"
-								name={`${uniqueId}-rating`}
-								className={`mask ${
-									isHalf
-										? "mask-star-2 mask-half-1"
-										: "mask-star-2 mask-half-2"
-								} bg-black`}
-								aria-label={`${starValue} star`}
-								defaultChecked={starValue === rating}
-							/>
+                            <input
+                                key={index}
+                                type="radio"
+                                name={`${uniqueId}`}
+                                className={`mask ${
+                                    isHalf
+                                        ? "mask-star-2 mask-half-1"
+                                        : "mask-star-2 mask-half-2"
+                                } bg-black`}
+                                aria-label={`${starValue} star`}
+                                defaultChecked={starValue === rating}
+                            />
 						);
 					})}
 				</div>
@@ -103,18 +105,42 @@ const ReviewsComponent = ({ productId }) => {
 		});
 	};
 
-	if (reviews.length === 0) {
-		return (
-			<div className="mt-16 px-4">
-				<h2 className="font-['Maison_Neue'] font-semibold text-2xl leading-7 text-black mb-8">
-					Reviews
-				</h2>
-				<p className="text-gray-600">
-					No reviews yet. Be the first to review this product!
-				</p>
-			</div>
-		);
-	}
+    // List-only mode: render just the list (or empty message) with tight spacing
+    if (listOnly) {
+        if (reviews.length === 0) {
+            return (
+                <div className="px-0">
+                    <p className="text-gray-600 text-sm">
+                        No reviews yet. Be the first to review this product!
+                    </p>
+                </div>
+            );
+        }
+        return (
+            <div className="px-0">
+                <ReviewsList
+                    reviews={reviews}
+                    renderStars={renderStars}
+                    formatDate={formatDate}
+                    compact={true}
+                />
+            </div>
+        );
+    }
+
+    // Default rendering with header, summary and controls
+    if (reviews.length === 0) {
+        return (
+            <div className="mt-16 px-4">
+                <h2 className="font-['Maison_Neue'] font-semibold text-2xl leading-7 text-black mb-8">
+                    Reviews
+                </h2>
+                <p className="text-gray-600">
+                    No reviews yet. Be the first to review this product!
+                </p>
+            </div>
+        );
+    }
 
 	return (
 		<div className="mt-16 px-4">
@@ -133,35 +159,37 @@ const ReviewsComponent = ({ productId }) => {
 			{/* Filter and Sort Controls */}
 			<div className="flex justify-between items-center mb-6 mt-8">
 				{/* Filter Button */}
-				<div 
-					className="bg-white hover:bg-gray-50 cursor-pointer flex items-center justify-between"
-					style={{
-						width: "240px",
-						height: "82px",
-						gap: "10px",
-						opacity: 1,
-						padding: "16px",
-						borderWidth: "1px",
-						border: "1px solid #DDDBDC",
-						borderRadius: "8px",
-					}}
-				>
-					<span className="font-['Maison_Neue'] font-semibold text-[24px] leading-[33.24px] tracking-[0px] text-black">
-						Filter
-					</span>
-					<svg
-						width="20"
-						height="20"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth="2"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						className="text-black"
-					>
-						<use href="/filter.svg#filter-icon" />
-					</svg>
+                <div 
+                    className="bg-white hover:bg-gray-50 cursor-pointer flex items-center justify-between"
+                    style={{
+                        width: "240px",
+                        height: "82px",
+                        gap: "10px",
+                        opacity: 1,
+                        padding: "16px",
+                        borderWidth: "1px",
+                        border: "1px solid #DDDBDC",
+                        borderRadius: "8px",
+                    }}
+                >
+                    <span className="font-['Maison_Neue'] font-semibold text-[24px] leading-[33.24px] tracking-[0px] text-black">
+                        Filter
+                    </span>
+                    {/* Inline funnel icon to avoid missing external asset */}
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-black"
+                        aria-hidden="true"
+                    >
+                        <path d="M3 4h18l-7 8v6l-4 2v-8L3 4z"/>
+                    </svg>
 				</div>
 
 				{/* Sort By Dropdown */}
@@ -204,21 +232,23 @@ const ReviewsComponent = ({ productId }) => {
 							Most Helpful
 						</option>
 					</select>
-					<div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-						<svg
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							className="text-black"
-						>
-							<use href="/chevron-down.svg#chevron-down-icon" />
-						</svg>
-					</div>
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        {/* Inline chevron-down icon to avoid missing external asset */}
+                        <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-black"
+                            aria-hidden="true"
+                        >
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </div>
 				</div>
 			</div>
 		</div>
